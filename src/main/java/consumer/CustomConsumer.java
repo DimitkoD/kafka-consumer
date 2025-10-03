@@ -1,12 +1,12 @@
 package consumer;
 
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class CustomConsumer {
 
-    @KafkaListener(topics = "orders", groupId = "order-group")
+    @KafkaListener(topics = "orders", containerFactory = "kafkaListenerContainerFactory")
     public void listen(String message) {
         System.out.println("Received order: " + message);
     }
